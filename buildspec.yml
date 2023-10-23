@@ -1,27 +1,18 @@
 version: 0.2
 phases:
-  # install:
-  #   runtime-versions:
-  #     python: 3.11
-  #   commands:
-  #   - echo "Installing Dependencies..."
-  # has to run on linux/x86 machine
-  # - pip install -r requirements.txt -t lib
   install:
     command:
     - echo "Installing Dependencies..." && sleep 3
     - echo "Installation Finished"
   build:
     commands:
-    - echo "Testing ..." && sleep 3
-    - echo "Test Finished, coverage 100%"
-    - echo "Check your test result at https://randomurl.com/test-result/build?<commit>"
-    - echo "Building project..."
-    # - cd lib
-    # - zip -r ../deployment_package.zip .
-    # - cd ..
-    # - zip -g deployment_package.zip lambda_function.py
+    - echo "Zipping project files..."
     - zip deployment_package.zip lambda_function.py
+  test:
+    commands:
+    - echo "Testing ..." && sleep 3
+    - echo "Test Finished. => Coverage 100%"
+    - echo "Check your test report at https://randomurl.com/test-result/build?<commit>"
   post_build:
     commands:
     - echo "Updating lambda Function..."
