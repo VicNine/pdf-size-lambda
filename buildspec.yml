@@ -8,8 +8,6 @@ phases:
     commands:
     - echo "Zipping project files..."
     - zip deployment_package.zip lambda_function.py
-  test:
-    commands:
     - echo "Testing ..." && sleep 3
     - echo "Test Finished. => Coverage 100%"
     - echo "Check your test report at https://randomurl.com/test-result/build?<commit>"
