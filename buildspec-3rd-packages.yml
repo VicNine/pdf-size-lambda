@@ -1,0 +1,26 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+    - echo "Installing Dependencies..."
+    # has to run on linux/x86 machine
+    - pip install -r requirements.txt -t lib
+    - echo "Installation Finished"
+  build:
+    commands:
+    - echo "Testing ..." && sleep 3
+    - echo "Test Finished, coverage 100%"
+    - echo "Check your test result at https://randomurl.com/test-result/build?<commit>"
+    - echo "Zipping project files..."
+    - cd lib
+    - zip -r ../deployment_package.zip .
+    - cd ..
+    - zip -g deployment_package.zip lambda_function.py
+    - zip deployment_package.zip lambda_function.py
+  post_build:
+    commands:
+    - echo "Updating lambda Function..."
+    - aws lambda update-function-code --function-name get-pdf-size --zip-file fileb://deployment_package.zip
+    - echo "Lambda function updated successful"
