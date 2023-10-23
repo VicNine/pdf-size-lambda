@@ -12,10 +12,11 @@ phases:
     - echo "Testing ..." && sleep 3
     - echo "Test Finished, coverage 100%"
     - echo "Building project..."
-    - cd lib
-    - zip -r9 ../deployment_package.zip .
-    - cd ..
-    - zip -g deployment_package.zip lambda_function.py
+    # - cd lib
+    # - zip -r ../deployment_package.zip .
+    # - cd ..
+    # - zip -g deployment_package.zip lambda_function.py
+    - zip deployment_package.zip lambda_function.py
   post_build:
     commands:
     - echo "Updating lambda Function..."
