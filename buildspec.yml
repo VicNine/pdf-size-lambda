@@ -19,5 +19,5 @@ phases:
     post_build:
       commands:
       - echo "Updating lambda Function..."
-      - aws lambda update-function-code --function-name get-pdf-size --zip-file fileb://
+      - aws lambda update-function-code --function-name get-pdf-size --zip-file fileb://deployment_package.zip
       - echo "Lambda function updated successful"
