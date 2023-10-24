@@ -7,6 +7,8 @@ Env `BUCKET_NAME` was created when cloudformation stacks was created
 
 if you need packages that lambda does not provide, please rename the `buildspec-3rd-packages.yml` to `buildspec.yml` 
 
+**Please contact viccc.z.wang@gmail.com to get access to postman examples**
+
 TODO:
 - lambda not returning error message, just internal error
 - notify user through email when success
