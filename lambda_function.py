@@ -1,10 +1,21 @@
 import base64
 import boto3
 import os
+import json
 
 def lambda_handler(event, context):
+
     # get base64 encoded file content from event
-    base64_file_content = event['body']['file_content_base64']
+    try:
+        body = json.loads(event['body'])
+    except json.JSONDecodeError as e:
+        print(f"JSONDecodeError: {e}")
+        return {
+            'statusCode': 400,
+            'body': 'Invalid JSON in request body'
+        }
+    # get base64 encoded file content from event
+    base64_file_content = body.get('file_content_base64')
     if not base64_file_content:
         return {
             'statusCode': 400,
@@ -21,7 +32,7 @@ def lambda_handler(event, context):
     # store file in S3 bucket
     bucket_name = os.environ['BUCKET_NAME']
     s3 = boto3.client('s3')
-    file_name = event['body']['file_name']
+    file_name = body.get('file_name')
 
     try:
         s3.put_object(Bucket=bucket_name, Key=file_name, Body=file_content, ContentType='application/pdf')
