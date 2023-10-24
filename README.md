@@ -6,3 +6,7 @@ CICD using aws codepipeline, push to dev branch will trigger build and update to
 Env `BUCKET_NAME` was created when cloudformation stacks was created
 
 if you need packages that lambda does not provide, please rename the `buildspec-3rd-packages.yml` to `buildspec.yml` 
+
+TODO:
+- lambda not returning error message, just internal error
+- notify user through email when success
