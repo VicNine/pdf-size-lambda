@@ -11,4 +11,4 @@ if you need packages that lambda does not provide, please rename the `buildspec-
 
 TODO:
 - lambda not returning error message, just internal error
-- notify user through email when success
+- notify user through email when success 
