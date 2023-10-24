@@ -30,7 +30,7 @@ def lambda_handler(event, context):
     file_name = body['file_name']
     unique_id = str(uuid.uuid4())
     timestamp = int(time.time())
-    file_name = f"{file_name}_{unique_id}_{timestamp}"
+    file_name = f"{timestamp}_{unique_id}_{file_name}"
 
     try:
         s3.put_object(Bucket=bucket_name, Key=file_name, Body=file_content, ContentType='application/pdf')
